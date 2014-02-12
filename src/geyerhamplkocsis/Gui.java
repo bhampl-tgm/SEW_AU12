@@ -11,8 +11,8 @@ public class Gui extends JFrame {
 	JPanel eingabe = new JPanel();
 	JPanel buttons = new JPanel();
 	JPanel combobox = new JPanel();
-	JButton encrypt = new JButton();
-	JButton decrypt = new JButton();
+	JButton encrypt = new JButton("Encrypt");
+	JButton decrypt = new JButton("Decrypt");
 	JComboBox encryptmethode = new JComboBox();
 	
 	public Gui(){
