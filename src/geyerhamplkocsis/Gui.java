@@ -10,6 +10,7 @@ import java.awt.event.ItemListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -29,6 +30,7 @@ public class Gui extends JFrame {
 	String label_substci = "SubstituationCipher";
 	String label_monoalci = "MonoAlphabeticCipher";
 	JTextArea input = new JTextArea(1,1);
+	JTextArea output = new JTextArea(1,1);
 	String selected_item = "ShiftCipher";
 	
 	public Gui(){
@@ -39,11 +41,12 @@ public class Gui extends JFrame {
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		
+		
 		encrypt.addActionListener(new ButtonListener());
 		decrypt.addActionListener(new ButtonListener());
 		encryptmode.addItemListener(new ItemChangeListener());
 		buttons_panel.setLayout(new GridLayout(2,1));
-		
+		output.setEditable(false);
 		
 		
 		encryptmode.addItem(label_shiftci);
@@ -53,7 +56,12 @@ public class Gui extends JFrame {
 		combobox_panel.add(encryptmode);
 		buttons_panel.add(encrypt);
 		buttons_panel.add(decrypt);
+		
+		input_panel.setLayout(new GridLayout(2,2));
+		input_panel.add(new JLabel("Input"));
 		input_panel.add(input);
+		input_panel.add(new JLabel("Output"));
+		input_panel.add(output);
 		
 		
 		this.add(input_panel,BorderLayout.CENTER);
@@ -101,27 +109,27 @@ public class Gui extends JFrame {
 			if(event.getText().equals("Encrypt")){
 				if(selected_item.equals("ShiftCipher")){
 		        	  String text_to_encrypt=input.getText();
-		        	  JOptionPane.showMessageDialog(null, "ShiftCipher");
 		        	  ShiftCipher a = new ShiftCipher(2);
-		        	  a.encrypt(text_to_encrypt);
+		        	  String encrypted=a.encrypt(text_to_encrypt);
+		        	  output.setText(encrypted);
 		          }
 		          if(selected_item.equals("KeyWordCipher")){
 		        	  String text_to_encrypt=input.getText();
-		        	  JOptionPane.showMessageDialog(null, "KeyWordCipher");
 		        	  KeywordCipher a = new KeywordCipher("test");
-		        	  a.encrypt(text_to_encrypt);
+		        	  String encrypted=a.encrypt(text_to_encrypt);
+		        	  output.setText(encrypted);
 		          }
 		          if(selected_item.equals("SubstituationCipher")){
 		        	  String text_to_encrypt=input.getText();
-		        	  JOptionPane.showMessageDialog(null, "SubstituationCipher");
 		        	  SubstitutionCipher a = new SubstitutionCipher("test");
-		        	  a.encrypt(text_to_encrypt);
+		        	  String encrypted=a.encrypt(text_to_encrypt);
+		        	  output.setText(encrypted);
 		          }
 		          if(selected_item.equals("MonoAlphabeticCipher")){
 		        	  String text_to_encrypt=input.getText();
-		        	  JOptionPane.showMessageDialog(null, "MonoAlphabeticCipher");
 		        	  MonoalphabeticCipher a = new MonoalphabeticCipher();
-		        	  a.encrypt(text_to_encrypt);
+		        	  String encrypted=a.encrypt(text_to_encrypt);
+		        	  output.setText(encrypted);
 		          }
 			}
 			/*
@@ -132,27 +140,27 @@ public class Gui extends JFrame {
 			if(event.getText().equals("Decrypt")){
 				if(selected_item.equals("ShiftCipher")){
 		        	  String text_to_decrypt=input.getText();
-		        	  JOptionPane.showMessageDialog(null, "ShiftCipher");
 		        	  ShiftCipher a = new ShiftCipher(2);
-		        	  a.decrypt(text_to_decrypt);
+		        	  String decrypted = a.decrypt(text_to_decrypt);
+		        	  output.setText(decrypted);
 		          }
 		          if(selected_item.equals("KeyWordCipher")){
 		        	  String text_to_decrypt=input.getText();
-		        	  JOptionPane.showMessageDialog(null, "KeyWordCipher");
 		        	  KeywordCipher a = new KeywordCipher("test");
-		        	  a.decrypt(text_to_decrypt);
+		        	  String decrypted = a.decrypt(text_to_decrypt);
+		        	  output.setText(decrypted);
 		          }
 		          if(selected_item.equals("SubstituationCipher")){
 		        	  String text_to_decrypt=input.getText();
-		        	  JOptionPane.showMessageDialog(null, "SubstituationCipher");
 		        	  SubstitutionCipher a = new SubstitutionCipher("test");
-		        	  a.decrypt(text_to_decrypt);
+		        	  String decrypted = a.decrypt(text_to_decrypt);
+		        	  output.setText(decrypted);
 		          }
 		          if(selected_item.equals("MonoAlphabeticCipher")){
 		        	  String text_to_decrypt=input.getText();
-		        	  JOptionPane.showMessageDialog(null, "MonoAlphabeticCipher");
 		        	  MonoalphabeticCipher a = new MonoalphabeticCipher();
-		        	  a.decrypt(text_to_decrypt);
+		        	  String decrypted = a.decrypt(text_to_decrypt);
+		        	  output.setText(decrypted);
 		          }
 			}
 			
