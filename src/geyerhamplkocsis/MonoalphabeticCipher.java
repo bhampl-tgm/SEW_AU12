@@ -29,7 +29,7 @@ public class MonoalphabeticCipher implements Cipher {
 	}
 
 	/**
-	 * The setter method to set get secretAlphabet
+	 * The setter method to set secretAlphabet
 	 * 
 	 * @param secretAlphabet
 	 *            the secretAlphabet to set
@@ -40,6 +40,7 @@ public class MonoalphabeticCipher implements Cipher {
 
 	/**
 	 * The setter method to set get normalAlphabet
+	 * 
 	 * @return the normalAlphabet
 	 */
 	public String getNormalAlphabet() {
