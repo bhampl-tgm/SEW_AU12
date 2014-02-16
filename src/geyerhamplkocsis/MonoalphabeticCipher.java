@@ -8,6 +8,7 @@ package geyerhamplkocsis;
 public class MonoalphabeticCipher implements Cipher {
  
 	private String secretAlphabet;
+
 	private final String normalAlphabet = "abcdefghijklmnopqrstuvwxyzäöüß";
 	 
 	/**
@@ -18,11 +19,19 @@ public class MonoalphabeticCipher implements Cipher {
 	}
 	 
 	/**
-	 * The Getter method for the secretAlphabet
+	 * The getter method to get secretAlphabet
 	 * @return the secretAlphabet
 	 */
 	public String getSecretAlphabet() {
 		return this.secretAlphabet;
+	}
+	
+	/**
+	 * The setter method to set get secretAlphabet
+	 * @param secretAlphabet the secretAlphabet to set
+	 */
+	public void setSecretAlphabet(String secretAlphabet) {
+		this.secretAlphabet = secretAlphabet;
 	}
 	 
 	/**
