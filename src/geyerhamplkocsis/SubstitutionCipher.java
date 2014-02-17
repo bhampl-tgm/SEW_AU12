@@ -1,12 +1,11 @@
 package geyerhamplkocsis;
 
 /**
+ * The SubstitutionCipher to set the secretalphabet
  * @author Burkhard Hampl
  * 
  */
 public class SubstitutionCipher extends MonoalphabeticCipher {
-
-	private String secretAlphabet;
 
 	/**
 	 * The constructor of the MonoalphabeticCipher class
@@ -23,12 +22,10 @@ public class SubstitutionCipher extends MonoalphabeticCipher {
 	 * 
 	 * @param secretAlphabet
 	 *            the secretAlphabet to set
+	 * @see geyerhamplkocsis.MonoalphabeticCipher#setSecretAlphabet(java.lang.String)
 	 */
 	public void setSecretAlphabet(String secretAlphabet) {
-		if (secretAlphabet.length() != 30) {
-			throw new IllegalArgumentException();
-		}
-		this.secretAlphabet = secretAlphabet;
+		super.setSecretAlphabet(secretAlphabet);
 	}
 
 }

@@ -1,5 +1,7 @@
 package geyerhamplkocsis;
 
+import java.util.TreeSet;
+
 /**
  * The MonoalphabeticCipher class to decrypt and encrypt a text
  * 
@@ -33,8 +35,17 @@ public class MonoalphabeticCipher implements Cipher {
 	 * 
 	 * @param secretAlphabet
 	 *            the secretAlphabet to set
+	 * @throws IllegalArgumentException
+	 *             if parameter string contains not all or correct character of
+	 *             alphabet (abcdefghijklmnopqrstuvwxyzäöüß)
 	 */
-	public void setSecretAlphabet(String secretAlphabet) {
+	public void setSecretAlphabet(String secretAlphabet)
+			throws IllegalArgumentException {
+		TreeSet<Character> secretAlphabetSet = new TreeSet<Character>();
+		for (char c : secretAlphabet.toLowerCase().toCharArray())
+			secretAlphabetSet.add(c);
+		if (!this.normalAlphabet.equals(secretAlphabetSet.toString()))
+			throw new IllegalArgumentException();
 		this.secretAlphabet = secretAlphabet;
 	}
 
