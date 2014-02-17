@@ -12,7 +12,7 @@ public class MonoalphabeticCipher implements Cipher {
 
 	private String secretAlphabet;
 
-	private final String normalAlphabet = "abcdefghijklmnopqrstuvwxyz\u00e4\u00f6\u00fc\u00df";
+	private final String normalAlphabet = "abcdefghijklmnopqrstuvwxyz\u00df\u00e4\u00f6\u00fc";
 
 	/**
 	 * The default constructor of the MonoalphabeticCipher class
