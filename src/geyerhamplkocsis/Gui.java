@@ -6,14 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextArea;
+import javax.swing.*;
 /**
  * @author Patrick Kocsis
  */
@@ -57,7 +50,11 @@ public class Gui extends JFrame {
 		buttons_panel.add(encrypt);
 		buttons_panel.add(decrypt);
 		
-		input_panel.setLayout(new GridLayout(2,2));
+		GridLayout input_layout = new GridLayout(2,2);
+		
+		input_layout.setVgap(10);
+		input_layout.setHgap(0);
+		input_panel.setLayout(input_layout);
 		input_panel.add(new JLabel("Input"));
 		input_panel.add(input);
 		input_panel.add(new JLabel("Output"));
