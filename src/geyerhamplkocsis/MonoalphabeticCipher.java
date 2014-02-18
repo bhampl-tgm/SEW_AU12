@@ -42,9 +42,14 @@ public class MonoalphabeticCipher implements Cipher {
 	public void setSecretAlphabet(String secretAlphabet)
 			throws IllegalArgumentException {
 		TreeSet<Character> secretAlphabetSet = new TreeSet<Character>();
-		for (char c : secretAlphabet.toLowerCase().toCharArray())
+		for (char c : secretAlphabet.toLowerCase().toCharArray()) {
 			secretAlphabetSet.add(c);
-		if (!this.normalAlphabet.equals(secretAlphabetSet.toString()))
+		}
+		StringBuilder sb = new StringBuilder();
+		for (char c : secretAlphabetSet) {
+			sb.append(c);
+		}
+		if (!this.normalAlphabet.equals(sb.toString()))
 			throw new IllegalArgumentException();
 		this.secretAlphabet = secretAlphabet;
 	}

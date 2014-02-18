@@ -92,7 +92,7 @@ public class KeywordCipher extends MonoalphabeticCipher {
 	}
 
 	public static void main(String[] args) {
-		KeywordCipher kc = new KeywordCipher("hgfawjköä");
+		KeywordCipher kc = new KeywordCipher("hgfawjk\u00f6\u00e4");
 		System.out.println(kc.encrypt("hallowelt"));
 		System.out.println(kc.decrypt(kc.encrypt("hallowelt")));
 	}
