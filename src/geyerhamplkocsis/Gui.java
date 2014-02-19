@@ -7,8 +7,6 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 
 import javax.swing.*;
 /**
@@ -170,10 +168,21 @@ public class Gui extends JFrame {
 			 * Tab der Text  (in der JTexArea(=input angegeben) und Verschlüsselt(encrypted) 
 			 */
 			if(event.getText().equals("Encrypt KeywordCipher")){
-				String text_to_encrypt=input2.getText();                    //Hier hole ich mir aus dem JTextArea den Text
-	        	  KeywordCipher a = new KeywordCipher(keyword.getText());   //Hier wird mit dem Keyword welches vom USer angegeben wird ein KeywordCipher erstellt
-	        	  String encrypted=a.encrypt(text_to_encrypt);              //welches hier verwenet wird um den angegeben Text zu Verschlüsseln
-	        	  output2.setText(encrypted);                               //Hier wird der Verschlüsselte Text in die JTextArea(output) eingefügt
+                String keyword1=keyword.getText();
+				String text_to_encrypt=input2.getText();
+                boolean good =false;
+                while(good != true){
+				  try{
+	        	    KeywordCipher a = new KeywordCipher(keyword1);
+                      System.out.print(keyword1);
+                    String encrypted=a.encrypt(text_to_encrypt);
+                    output2.setText(encrypted);
+                      good=true;
+                  }catch(IllegalArgumentException e1){
+                    good=false;
+                    keyword1=JOptionPane.showInputDialog("Wrong Keyword!\n(1)Keyword has to be shorter than 30 and longer than 0\n(2)Keyword cant contain numeric Characters\n(3)Keyword cant contain a Character twice");
+                   }
+                }
 			}
 			if(event.getText().equals("Encrypt SubstitutionCipher")){
 				String text_to_encrypt=input3.getText();
