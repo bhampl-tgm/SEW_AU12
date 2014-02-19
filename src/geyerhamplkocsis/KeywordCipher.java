@@ -54,6 +54,7 @@ public class KeywordCipher extends MonoalphabeticCipher {
 	 *            Keyword that will be added to the alphabet
 	 */
 	public void setKeyword(String keyword) {
+		validateKeyword(keyword);
 		// Ignoring Upper Case
 		String kw = keyword.toLowerCase();
 
