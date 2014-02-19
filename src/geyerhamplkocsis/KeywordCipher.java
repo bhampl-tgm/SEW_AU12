@@ -23,6 +23,7 @@ public class KeywordCipher extends MonoalphabeticCipher {
 	 *            Keyword that will be added to the alphabet
 	 */
 	public KeywordCipher(String keyword) {
+		validateKeyword(keyword);
 		// Ignoring Upper Case
 		String kw = keyword.toLowerCase();
 
@@ -91,9 +92,25 @@ public class KeywordCipher extends MonoalphabeticCipher {
 		return sb.toString();
 	}
 
-	public static void main(String[] args) {
-		KeywordCipher kc = new KeywordCipher("hgfawjk\u00f6\u00e4");
-		System.out.println(kc.encrypt("hallowelt"));
-		System.out.println(kc.decrypt(kc.encrypt("hallowelt")));
+	/**
+	 * Checks if keyword is invalid and throws an {@link IllegalArgumentException} if needed
+	 * 
+	 * @param keyword Keyword that will be checked
+	 * @throws IllegalArgumentException Will be thrown if Keyword is invalid
+	 */
+	public void validateKeyword(String keyword) throws IllegalArgumentException {
+		// Keyword has to be shorter than 30 and longer than 0
+		if (keyword.length() >= 30 || keyword.length() < 0) throw new IllegalArgumentException("Invalid keyword length");
+		// Keyword cant contain numeric Characters
+		else if (!keyword.matches("[a-zA-Z]")) throw new IllegalArgumentException("Invalid characters detected");
+		// Keyword cant contain a Character twice
+		else {
+			for (int i = 0; i < keyword.length(); i++) {
+				for (int j = 0; j < keyword.length(); j++) {
+					if (keyword.charAt(i) == keyword.charAt(j) && i != j) throw new IllegalArgumentException("Character" + keyword.charAt(i) + " in keyword was used more than one time");
+				}
+			}
+		}
 	}
+	
 }
