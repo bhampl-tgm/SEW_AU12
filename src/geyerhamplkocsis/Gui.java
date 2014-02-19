@@ -38,6 +38,7 @@ public class Gui extends JFrame {
     protected JTextArea keyword = new JTextArea(1,1);
     protected JTextArea subst_word = new JTextArea(1,1);
     protected JTextArea shift_num = new JTextArea(1,1);
+    protected String zwischensp="q";
 	
 	public Gui(){
 
@@ -171,13 +172,12 @@ public class Gui extends JFrame {
                 String keyword1=keyword.getText();
 				String text_to_encrypt=input2.getText();
                 boolean good =false;
-                while(good != true){
+                while(good == false){
 				  try{
 	        	    KeywordCipher a = new KeywordCipher(keyword1);
-                      System.out.print(keyword1);
                     String encrypted=a.encrypt(text_to_encrypt);
                     output2.setText(encrypted);
-                      good=true;
+                    good=true;
                   }catch(IllegalArgumentException e1){
                     good=false;
                     keyword1=JOptionPane.showInputDialog("Wrong Keyword!\n(1)Keyword has to be shorter than 30 and longer than 0\n(2)Keyword cant contain numeric Characters\n(3)Keyword cant contain a Character twice");
@@ -186,10 +186,19 @@ public class Gui extends JFrame {
 			}
 			if(event.getText().equals("Encrypt SubstitutionCipher")){
 				String text_to_encrypt=input3.getText();
-					String alpha = "";
-	        	  SubstitutionCipher a = new SubstitutionCipher(subst_word.getText());
-	        	  String encrypted=a.encrypt(text_to_encrypt);
-	        	  output3.setText(encrypted);
+                String substword=subst_word.getText();
+                boolean good=false;
+                while(good == false)
+				try{
+	        	  SubstitutionCipher a = new SubstitutionCipher(substword);
+                    good=true;
+                    String encrypted=a.encrypt(text_to_encrypt);
+                    output3.setText(encrypted);
+                }catch (IllegalArgumentException e1){
+                    substword=JOptionPane.showInputDialog("Wrong Input:\n Input Alphabet like (abcdefghijklmnopqrstuvwxyzäöüß)");
+                    good = false;
+                }
+
 			}
 			if(event.getText().equals("Encrypt ShiftCipher")){
 		        	  String text_to_encrypt=input4.getText();
@@ -236,22 +245,52 @@ public class Gui extends JFrame {
 			 * der Text  (in der JTexArea(=input) angegeben) Entschlüsselt(decrypted) 
 			 */
 			if(event.getText().equals("Decrypt KeywordCipher")){
-				String text_to_decrypt=input2.getText();
-	        	  KeywordCipher a = new KeywordCipher(keyword.getText()); // Hier hole ich mir aus der keyword JTextArea den andgegebenen text
-	        	  String decrypted=a.decrypt(text_to_decrypt);
-	        	  output2.setText(decrypted);
-			}
+                String keyword1=keyword.getText();
+                String text_to_decrypt=input2.getText();
+                boolean good =false;
+                while(good == false){
+                    try{
+                        KeywordCipher a = new KeywordCipher(keyword1);
+                        String decrypted=a.decrypt(text_to_decrypt);
+                        output2.setText(decrypted);
+                        good=true;
+                    }catch(IllegalArgumentException e1){
+                        good=false;
+                        keyword1=JOptionPane.showInputDialog("Wrong Keyword!\n(1)Keyword has to be shorter than 30 and longer than 0\n(2)Keyword cant contain numeric Characters\n(3)Keyword cant contain a Character twice");
+                    }
+                }
+            }
 			if(event.getText().equals("Decrypt SubstitutionCipher")){
-				String text_to_decrypt=input3.getText();
-	        	  SubstitutionCipher a = new SubstitutionCipher(subst_word.getText());
-	        	  String decrypted=a.decrypt(text_to_decrypt);
-	        	  output3.setText(decrypted);
-			}
+                String text_to_decrypt=input3.getText();
+                String substword=subst_word.getText();
+                boolean good=false;
+                while(good == false)
+                    try{
+                        SubstitutionCipher a = new SubstitutionCipher(substword);
+                        good=true;
+                        String decrypted=a.decrypt(text_to_decrypt);
+                        output3.setText(decrypted);
+                    }catch (IllegalArgumentException e1){
+                        substword=JOptionPane.showInputDialog("Wrong Input:\n Input Alphabet like (abcdefghijklmnopqrstuvwxyzäöüß)");
+                        good = false;
+                    }
+            }
 			if(event.getText().equals("Decrypt ShiftCipher")){
-		        	  String text_to_decrypt=input4.getText();
-		        	  ShiftCipher a = new ShiftCipher(Integer.parseInt(shift_num.getText()));
-		        	  String decrypted=a.decrypt(text_to_decrypt);
-		        	  output4.setText(decrypted);
+		        String text_to_decrypt=input4.getText();
+                int shift_amount=0;
+                boolean fail=false;
+                try{
+                    if(fail == false){
+                        shift_amount=Integer.parseInt(shift_num.getText());
+                    }
+                    shift_amount=Integer.parseInt(zwischensp);
+                }catch(NumberFormatException e1){
+                    zwischensp=JOptionPane.showInputDialog("Wrong input!\nJust numbers please!");
+                    fail=true;
+                }
+		        ShiftCipher a = new ShiftCipher(shift_amount);
+		        String decrypted=a.decrypt(text_to_decrypt);
+		        output4.setText(decrypted);
 			}
 		}
 	}
