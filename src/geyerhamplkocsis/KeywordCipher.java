@@ -23,27 +23,7 @@ public class KeywordCipher extends MonoalphabeticCipher {
 	 *            Keyword that will be added to the alphabet
 	 */
 	public KeywordCipher(String keyword) {
-		validateKeyword(keyword);
-		// Ignoring Upper Case
-		String kw = keyword.toLowerCase();
-
-		List<Character> tmp = new ArrayList<Character>();
-
-		// Adding every char of the keyword to the list
-		for (int i = 0; i < kw.length(); i++) {
-			tmp.add(kw.toCharArray()[i]);
-		}
-
-		for (char c : this.getNormalAlphabet().toCharArray()) {
-			// If the String doesn't contain the char, it will be added to the
-			// list
-			if (convert(tmp).indexOf(c) == -1) {
-				tmp.add(c);
-			}
-		}
-
-		// Sets the secret alphabet by calling the method from the super class
-		this.setSecretAlphabet(convert(tmp));
+		this.setKeyword(keyword);
 	}
 
 	/**
@@ -101,7 +81,7 @@ public class KeywordCipher extends MonoalphabeticCipher {
 	 */
 	public void validateKeyword(String keyword) throws IllegalArgumentException {
 		// Keyword has to be shorter than 30 and longer than 0
-		if (keyword.length() >= 30 || keyword.length() < 0) throw new IllegalArgumentException("Invalid keyword length");
+		if (keyword.length() >= 30 || keyword.length() <= 0) throw new IllegalArgumentException("Invalid keyword length");
 		// Keyword cant contain numeric Characters
 		else if (keyword.matches("^[a-zA-Z]$")) throw new IllegalArgumentException("Invalid characters detected");
 		// Keyword cant contain a Character twice
