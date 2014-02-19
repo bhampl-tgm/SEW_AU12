@@ -103,7 +103,7 @@ public class KeywordCipher extends MonoalphabeticCipher {
 		// Keyword has to be shorter than 30 and longer than 0
 		if (keyword.length() >= 30 || keyword.length() < 0) throw new IllegalArgumentException("Invalid keyword length");
 		// Keyword cant contain numeric Characters
-		else if (!keyword.matches("[a-zA-Z]")) throw new IllegalArgumentException("Invalid characters detected");
+		else if (keyword.matches("^[a-zA-Z]$")) throw new IllegalArgumentException("Invalid characters detected");
 		// Keyword cant contain a Character twice
 		else {
 			for (int i = 0; i < keyword.length(); i++) {
