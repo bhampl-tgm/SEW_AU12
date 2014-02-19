@@ -200,7 +200,25 @@ public class Gui extends JFrame {
 
 			}
 			if(event.getText().equals("Encrypt ShiftCipher")){
-		        	  String text_to_encrypt=input4.getText();
+                String text_to_encrypt=input4.getText();
+                int shift_amount=0;
+                boolean fail=false;
+                boolean good= false;
+                while(good == false){
+                    try{
+                        if(fail == false){
+                            shift_amount=Integer.parseInt(shift_num.getText());
+                        }
+                        shift_amount=Integer.parseInt(zwischensp);
+                        good=true;
+                    }catch(NumberFormatException e1){
+                        zwischensp=JOptionPane.showInputDialog("Wrong input!\nJust numbers please!");
+                        fail=true;
+                        good=false;
+                    }
+                }
+
+
 		        	  ShiftCipher a = new ShiftCipher(Integer.parseInt(shift_num.getText()));
 		        	  String encrypted=a.encrypt(text_to_encrypt);
 		        	  output4.setText(encrypted);
