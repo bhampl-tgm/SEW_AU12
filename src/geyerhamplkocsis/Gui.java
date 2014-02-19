@@ -13,8 +13,7 @@ import javax.swing.*;
  * @author Patrick Kocsis
  */
 public class Gui extends JFrame {
-	
-	protected JPanel input_panel_mono = new JPanel();
+
 	protected JButton encrypt2 = new JButton("Encrypt KeywordCipher");
     protected JButton decrypt2 = new JButton("Decrypt KeywordCipher");
     protected JButton encrypt3 = new JButton("Encrypt SubstitutionCipher");
@@ -279,15 +278,20 @@ public class Gui extends JFrame {
 		        String text_to_decrypt=input4.getText();
                 int shift_amount=0;
                 boolean fail=false;
-                try{
-                    if(fail == false){
-                        shift_amount=Integer.parseInt(shift_num.getText());
-                    }
-                    shift_amount=Integer.parseInt(zwischensp);
-                }catch(NumberFormatException e1){
-                    zwischensp=JOptionPane.showInputDialog("Wrong input!\nJust numbers please!");
-                    fail=true;
+                boolean good= false;
+                while(good == false){
+                    try{
+                        if(fail == false){
+                           shift_amount=Integer.parseInt(shift_num.getText());
+                       }
+                      shift_amount=Integer.parseInt(zwischensp);
+                        good=true;
+                 }catch(NumberFormatException e1){
+                            zwischensp=JOptionPane.showInputDialog("Wrong input!\nJust numbers please!");
+                       fail=true;
+                        good=false;
                 }
+                  }
 		        ShiftCipher a = new ShiftCipher(shift_amount);
 		        String decrypted=a.decrypt(text_to_decrypt);
 		        output4.setText(decrypted);
