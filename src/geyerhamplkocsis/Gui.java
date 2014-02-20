@@ -176,6 +176,7 @@ public class Gui extends JFrame {
 	        	    KeywordCipher a = new KeywordCipher(keyword1);
                     String encrypted=a.encrypt(text_to_encrypt);
                     output2.setText(encrypted);
+                      keyword.setText(keyword1);
                     good=true;
                   }catch(IllegalArgumentException e1){
                     good=false;
@@ -191,6 +192,7 @@ public class Gui extends JFrame {
 				try{
 	        	  SubstitutionCipher a = new SubstitutionCipher(substword);
                     good=true;
+                    subst_word.setText(substword);
                     String encrypted=a.encrypt(text_to_encrypt);
                     output3.setText(encrypted);
                 }catch (IllegalArgumentException e1){
@@ -210,6 +212,7 @@ public class Gui extends JFrame {
                             shift_amount=Integer.parseInt(shift_num.getText());
                         }
                         shift_amount=Integer.parseInt(zwischensp);
+                        shift_num.setText(""+shift_amount);
                         good=true;
                     }catch(NumberFormatException e1){
                         zwischensp=JOptionPane.showInputDialog("Wrong input!\nJust numbers please!");
@@ -270,6 +273,7 @@ public class Gui extends JFrame {
                         KeywordCipher a = new KeywordCipher(keyword1);
                         String decrypted=a.decrypt(text_to_decrypt);
                         output2.setText(decrypted);
+                        keyword.setText(keyword1);
                         good=true;
                     }catch(IllegalArgumentException e1){
                         good=false;
@@ -285,6 +289,7 @@ public class Gui extends JFrame {
                     try{
                         SubstitutionCipher a = new SubstitutionCipher(substword);
                         good=true;
+                        subst_word.setText(substword);
                         String decrypted=a.decrypt(text_to_decrypt);
                         output3.setText(decrypted);
                     }catch (IllegalArgumentException e1){
@@ -302,7 +307,8 @@ public class Gui extends JFrame {
                         if(fail == false){
                            shift_amount=Integer.parseInt(shift_num.getText());
                        }
-                      shift_amount=Integer.parseInt(zwischensp);
+                        shift_amount=Integer.parseInt(zwischensp);
+                        shift_num.setText(""+shift_amount);
                         good=true;
                  }catch(NumberFormatException e1){
                             zwischensp=JOptionPane.showInputDialog("Wrong input!\nJust numbers please!");
