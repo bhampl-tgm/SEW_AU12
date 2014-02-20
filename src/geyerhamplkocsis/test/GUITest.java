@@ -2,6 +2,8 @@ package geyerhamplkocsis.test;
 
 import geyerhamplkocsis.Gui;
 import geyerhamplkocsis.KeywordCipher;
+import geyerhamplkocsis.ShiftCipher;
+import geyerhamplkocsis.SubstitutionCipher;
 
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -15,6 +17,7 @@ import static org.junit.Assert.*;
 @SuppressWarnings("serial")
 public class GUITest extends Gui {
 
+	// Tests KeywordCipher
 	@Test
 	public void testKeywordCipherButtonDecrypt() {
 		ButtonListener b = new ButtonListener();
@@ -39,5 +42,82 @@ public class GUITest extends Gui {
 		b.actionPerformed(new ActionEvent(this.copy_to_clipboard2, ActionEvent.ACTION_FIRST, ""));
 		this.output2 = new JTextArea("bla");
 		assertEquals("bla", Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null));
+	}
+	
+	@Test
+	public void testKeywordCipherCopyToInput() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.copy_output_to_input2, ActionEvent.ACTION_FIRST, ""));
+		this.output2 = new JTextArea("bla");
+		assertEquals("bla", this.input2.getText());
+	}
+	
+	// Test SubstitutionCipher
+	@Test
+	public void testSubstCipherButtonDecrypt() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.decrypt3, ActionEvent.ACTION_FIRST, ""));
+		this.input3 = new JTextArea("test");
+		assertEquals(new SubstitutionCipher("qwertzuiopüasdfghjklöäyyxcvbnmß").decrypt("test"), this.output3.getText());
+	}
+	
+	@Test
+	public void testSubstCipherButtonEncrypt() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.encrypt3, ActionEvent.ACTION_FIRST, ""));
+		this.input3 = new JTextArea("test");
+		assertEquals(new SubstitutionCipher("qwertzuiopüasdfghjklöäyyxcvbnmß").encrypt("test"), this.output3.getText());
+	}
+	
+	@Test
+	public void testSubstCipherCopyClipboard() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.copy_to_clipboard3, ActionEvent.ACTION_FIRST, ""));
+		this.output3 = new JTextArea("bla");
+		assertEquals("bla", Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null));
+	}
+	
+	@Test
+	public void testSubstCipherCopyToInput() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.copy_output_to_input3, ActionEvent.ACTION_FIRST, ""));
+		this.output3 = new JTextArea("bla");
+		assertEquals("bla", this.input3.getText());
+	}
+	
+	// Test ShiftChiper
+	
+	@Test
+	public void testShiftCipherButtonDecrypt() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.decrypt4, ActionEvent.ACTION_FIRST, ""));
+		this.input4 = new JTextArea("test");
+		this.shift_num = new JTextArea("3");
+		assertEquals(new ShiftCipher(3).decrypt("test"), this.output4.getText());
+	}
+	
+	@Test
+	public void testShiftCipherButtonEncrypt() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.encrypt4, ActionEvent.ACTION_FIRST, ""));
+		this.input4 = new JTextArea("test");
+		this.shift_num = new JTextArea("3");
+		assertEquals(new ShiftCipher(3).encrypt("test"), this.output4.getText());
+	}
+	
+	@Test
+	public void testShiftCipherCopyClipboard() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.copy_to_clipboard4, ActionEvent.ACTION_FIRST, ""));
+		this.output4 = new JTextArea("bla");
+		assertEquals("bla", Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null));
+	}
+	
+	@Test
+	public void testShiftCipherCopyToInput() {
+		ButtonListener b = new ButtonListener();
+		b.actionPerformed(new ActionEvent(this.copy_output_to_input4, ActionEvent.ACTION_FIRST, ""));
+		this.output4 = new JTextArea("bla");
+		assertEquals("bla", this.input4.getText());
 	}
 }
