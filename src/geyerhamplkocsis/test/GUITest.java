@@ -21,68 +21,68 @@ public class GUITest extends Gui {
 	@Test
 	public void testKeywordCipherButtonDecrypt() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.decrypt2, ActionEvent.ACTION_FIRST, ""));
-		this.input2 = new JTextArea("test");
+		b.actionPerformed(new ActionEvent(this.decrypt_keyword, ActionEvent.ACTION_FIRST, ""));
+		this.input_keyword = new JTextArea("test");
 		this.keyword = new JTextArea("qwertz");
-		assertEquals(new KeywordCipher("qwertz").decrypt("test"), this.output2.getText());
+		assertEquals(new KeywordCipher("qwertz").decrypt("test"), this.output_keyword.getText());
 	}
 
 	@Test
 	public void testKeywordCipherButtonEncrypt() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.encrypt2, ActionEvent.ACTION_FIRST, ""));
-		this.input2 = new JTextArea("test");
+		b.actionPerformed(new ActionEvent(this.encrypt_keyword, ActionEvent.ACTION_FIRST, ""));
+		this.input_keyword = new JTextArea("test");
 		this.keyword = new JTextArea("qwertz");
-		assertEquals(new KeywordCipher("qwertz").encrypt("test"), this.output2.getText());
+		assertEquals(new KeywordCipher("qwertz").encrypt("test"), this.output_keyword.getText());
 	}
 	
 	@Test
 	public void testKeywordCipherCopyClipboard() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.copy_to_clipboard2, ActionEvent.ACTION_FIRST, ""));
-		this.output2 = new JTextArea("bla");
+		b.actionPerformed(new ActionEvent(this.copy_to_clipboard_keyword, ActionEvent.ACTION_FIRST, ""));
+		this.output_keyword = new JTextArea("bla");
 		assertEquals("bla", Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null));
 	}
 	
 	@Test
 	public void testKeywordCipherCopyToInput() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.copy_output_to_input2, ActionEvent.ACTION_FIRST, ""));
-		this.output2 = new JTextArea("bla");
-		assertEquals("bla", this.input2.getText());
+		b.actionPerformed(new ActionEvent(this.copy_output_to_input_keyword, ActionEvent.ACTION_FIRST, ""));
+		this.output_keyword = new JTextArea("bla");
+		assertEquals("bla", this.input_keyword.getText());
 	}
 	
 	// Test SubstitutionCipher
 	@Test
 	public void testSubstCipherButtonDecrypt() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.decrypt3, ActionEvent.ACTION_FIRST, ""));
-		this.input3 = new JTextArea("test");
-		assertEquals(new SubstitutionCipher("qwertzuiopüasdfghjklöäyyxcvbnmß").decrypt("test"), this.output3.getText());
+		b.actionPerformed(new ActionEvent(this.decrypt_subst, ActionEvent.ACTION_FIRST, ""));
+		this.input_subst = new JTextArea("test");
+		assertEquals(new SubstitutionCipher("qwertzuiopï¿½asdfghjklï¿½ï¿½yyxcvbnmï¿½").decrypt("test"), this.output_subst.getText());
 	}
 	
 	@Test
 	public void testSubstCipherButtonEncrypt() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.encrypt3, ActionEvent.ACTION_FIRST, ""));
-		this.input3 = new JTextArea("test");
-		assertEquals(new SubstitutionCipher("qwertzuiopüasdfghjklöäyyxcvbnmß").encrypt("test"), this.output3.getText());
+		b.actionPerformed(new ActionEvent(this.encrypt_subst, ActionEvent.ACTION_FIRST, ""));
+		this.input_subst = new JTextArea("test");
+		assertEquals(new SubstitutionCipher("qwertzuiopï¿½asdfghjklï¿½ï¿½yyxcvbnmï¿½").encrypt("test"), this.output_subst.getText());
 	}
 	
 	@Test
 	public void testSubstCipherCopyClipboard() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.copy_to_clipboard3, ActionEvent.ACTION_FIRST, ""));
-		this.output3 = new JTextArea("bla");
+		b.actionPerformed(new ActionEvent(this.copy_to_clipboard_subst, ActionEvent.ACTION_FIRST, ""));
+		this.output_subst = new JTextArea("bla");
 		assertEquals("bla", Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null));
 	}
 	
 	@Test
 	public void testSubstCipherCopyToInput() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.copy_output_to_input3, ActionEvent.ACTION_FIRST, ""));
-		this.output3 = new JTextArea("bla");
-		assertEquals("bla", this.input3.getText());
+		b.actionPerformed(new ActionEvent(this.copy_output_to_input_subst, ActionEvent.ACTION_FIRST, ""));
+		this.output_subst = new JTextArea("bla");
+		assertEquals("bla", this.input_subst.getText());
 	}
 	
 	// Test ShiftChiper
@@ -90,34 +90,34 @@ public class GUITest extends Gui {
 	@Test
 	public void testShiftCipherButtonDecrypt() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.decrypt4, ActionEvent.ACTION_FIRST, ""));
-		this.input4 = new JTextArea("test");
+		b.actionPerformed(new ActionEvent(this.decrypt_shift, ActionEvent.ACTION_FIRST, ""));
+		this.input_shift = new JTextArea("test");
 		this.shift_num = new JTextArea("3");
-		assertEquals(new ShiftCipher(3).decrypt("test"), this.output4.getText());
+		assertEquals(new ShiftCipher(3).decrypt("test"), this.output_shift.getText());
 	}
 	
 	@Test
 	public void testShiftCipherButtonEncrypt() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.encrypt4, ActionEvent.ACTION_FIRST, ""));
-		this.input4 = new JTextArea("test");
+		b.actionPerformed(new ActionEvent(this.encrypt_shift, ActionEvent.ACTION_FIRST, ""));
+		this.input_shift = new JTextArea("test");
 		this.shift_num = new JTextArea("3");
-		assertEquals(new ShiftCipher(3).encrypt("test"), this.output4.getText());
+		assertEquals(new ShiftCipher(3).encrypt("test"), this.output_shift.getText());
 	}
 	
 	@Test
 	public void testShiftCipherCopyClipboard() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.copy_to_clipboard4, ActionEvent.ACTION_FIRST, ""));
-		this.output4 = new JTextArea("bla");
+		b.actionPerformed(new ActionEvent(this.copy_to_clipboard_shift, ActionEvent.ACTION_FIRST, ""));
+		this.output_shift = new JTextArea("bla");
 		assertEquals("bla", Toolkit.getDefaultToolkit().getSystemClipboard().getContents(null));
 	}
 	
 	@Test
 	public void testShiftCipherCopyToInput() {
 		ButtonListener b = new ButtonListener();
-		b.actionPerformed(new ActionEvent(this.copy_output_to_input4, ActionEvent.ACTION_FIRST, ""));
-		this.output4 = new JTextArea("bla");
-		assertEquals("bla", this.input4.getText());
+		b.actionPerformed(new ActionEvent(this.copy_output_to_input_shift, ActionEvent.ACTION_FIRST, ""));
+		this.output_shift = new JTextArea("bla");
+		assertEquals("bla", this.input_shift.getText());
 	}
 }
